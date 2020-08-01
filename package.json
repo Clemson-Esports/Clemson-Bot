@@ -4,7 +4,6 @@
   "description": "Discord bot for the Clemson Esports Discord at https://discord.com/invite/clemson",
   "main": "bot.js",
   "dependencies": {
-    "axios": "^0.19.2",
     "discord.js": "^12.2.0",
     "discord.js-commando": "github:discordjs/Commando"
   },
