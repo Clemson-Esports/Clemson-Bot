@@ -57,6 +57,7 @@ client
 		`);
     });
 
+// To add a new command group just add a new entry in the registerGroups call
 client.registry
     .registerGroups([
         ['utility', 'Moderation and Utility commands'],

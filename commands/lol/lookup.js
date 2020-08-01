@@ -17,7 +17,8 @@ module.exports = class LookupCommand extends Command {
                 key: 'name',
                 prompt: 'Which summoner do you want to look up?',
                 type: 'string'
-            }]
+            }],
+            examples: [`${config.prefix} lookup Doublelift`]
         });
     }
 
