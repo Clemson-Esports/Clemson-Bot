@@ -1,5 +1,5 @@
-const commando = require('../../../src');
-const config = require('./config.json')
+const { Command } = require('discord.js-commando');
+const config = require('../../config.json')
 
 /* This is the templateCommand command.
    You can copy this file into your folder and replace it to make a new
@@ -8,10 +8,10 @@ const config = require('./config.json')
    what your command needs. To see what all is available to you,
    read the documentation below. 
    https: //discord.js.org/#/docs/commando/master/general/welcome */
-module.exports = class TemplateCommand extends commando.Command {
+module.exports = class TemplateCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'templateCommand',
+            name: 'templatecommand',
             aliases: ['template', 'temp'],
             group: 'templates',
             memberName: 'template',

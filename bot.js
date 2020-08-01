@@ -66,6 +66,7 @@ client.registry
         ['fun', 'Some random stuff, just for fun!'],
         ['lol', 'League of Legends'],
         ['misc', 'Miscellaneous commands'],
+        ['templates', 'For testing/dev team'],
     ])
     .registerDefaults()
     .registerCommandsIn(path.join(__dirname, 'commands'));
