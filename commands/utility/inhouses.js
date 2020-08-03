@@ -49,7 +49,7 @@ module.exports = class InhousesCommand extends Command {
             .then(async collected => {
                 // check if there is enough player for inhouse
                 numPlayers = collected.first().users.cache.size - 1;
-                if (numPlayers < args.teamSize) {
+                if (numPlayers < args.teamSize * 2) {
                     sentEmbed.say(`Not enough players, only ${numPlayers} user(s) signed up`)
                 }
                 else {
