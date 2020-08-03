@@ -13,11 +13,6 @@ module.exports = class InhousesCommand extends Command {
             description: 'Set up custom inhouse lobbies easily!',
             examples: [`${config.prefix} inhouses firstArg`],
             args: [{
-                key: 'inhousesTitle',
-                prompt: 'What game or event is this inhouse for?',
-                type: 'string',
-            },
-            {
                 key: 'teamSize',
                     prompt: 'How many people will be on each team?',
                     type: 'integer',
@@ -34,7 +29,7 @@ module.exports = class InhousesCommand extends Command {
         /* Embed message */
         const embed = new Discord.MessageEmbed()
             .setColor('#F56600')
-            .setTitle(`🐯 ${args.inhousesTitle} Inhouses 🐯`)
+            .setTitle(`🐯 Clemson Esports Inhouses 🐯`)
             .setDescription(`React to this message with a ${reactionEmojiString} to be put into the random team generation!`)
             .setThumbnail('https://www.clemson.edu/brand/resources/logos/paw/orange.png')
             .setTimestamp();
