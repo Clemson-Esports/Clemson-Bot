@@ -1,3 +1,5 @@
+/* Initial imports, do not remove these. You can add
+   more as you wish. */
 const { Command } = require('discord.js-commando');
 const config = require('../../config.json')
 

@@ -12,7 +12,7 @@ module.exports = class LookupCommand extends Command {
             aliases: ['lu', 'summoner'],
             group: 'lol',
             memberName: 'lookup',
-            description: 'Look up a summoner with the username. Usage: `cu! lookup <SummonerName>`',
+            description: 'Look up a summoner with the username.',
             args: [{
                 key: 'name',
                 prompt: 'Which summoner do you want to look up?',
