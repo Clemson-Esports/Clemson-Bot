@@ -34,9 +34,24 @@ module.exports = class InhousesCommand extends Command {
             .setThumbnail('https://www.clemson.edu/brand/resources/logos/paw/orange.png')
             .setTimestamp();
 
+        const filter = (reaction, user) => reaction.emoji.id === reactionEmoji && user.id === msg.author.id;
+
         /* Send the message and start the reaction to it! */
         msg.say(embed).then(sentEmbed => {
             sentEmbed.react(reactionEmoji);
+            // wait for user reaction
+            sentEmbed.awaitReactions(filter, { maxUsers: args.teamSize , time: 10000, errors: ['time']})
+            .then(collected => {
+                // check 
+                collected.first().users.cache.each(user => {
+                    // make sure user is not bot
+                    if (!user.bot) {
+                        sentEmbed.say(user.username)
+                    }
+                })
+            })
+            .catch(collected => msg.say(`Not enough player, only ${collected.size} user(s) reacted`));
         });
+
     }
 };
