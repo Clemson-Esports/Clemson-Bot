@@ -20,3 +20,7 @@ jobs:
           name: Running in a Unique Container
           command: |
             node -v
+      - run:
+          name: Bot Startup
+          command: |
+            node bot.js
