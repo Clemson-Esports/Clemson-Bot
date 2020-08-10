@@ -29,6 +29,9 @@ module.exports = class TemplateCommand extends Command {
 
     async run(msg, args) {
         // Makes the bot talk, returns whatever firstArg is back.
-        return msg.say(args.firstArg);
+        //return msg.say(args.firstArg);
+
+        //Hello World!
+        return msg.say("Hello World!");
     }
 };
