@@ -43,7 +43,7 @@ module.exports = class InhousesCommand extends Command {
         const embed = new Discord.MessageEmbed()
             .setColor('#F56600')
             .setTitle(`🐯 Clemson Esports Inhouses 🐯`)
-            .setDescription(`React to this message with a ${reactionEmojiString} to be put into the random team generation!`)
+            .setDescription(`React to this message with a ${reactionEmojiString} to be put into the random team generation! You have a total of ${args.seconds} seconds to react before teams are generated.`)
             .setThumbnail('https://www.clemson.edu/brand/resources/logos/paw/orange.png')
             .setTimestamp();
 
@@ -100,13 +100,13 @@ async function formatPlayer(team1, team2) {
 
     let str = '';
 
-    str += '▬▬▬▬▬▬▬▬▬Team One▬▬▬▬▬▬▬▬▬\n\n';
+    str += '▬▬▬▬▬▬▬▬▬Team One▬▬▬▬▬▬▬▬▬\n';
 
     for (var i = 0; i < team1.length; i++) {
         str += ':small_blue_diamond:' + ' ' + team1[i] + '\n';
     }
 
-    str += '▬▬▬▬▬▬▬▬▬Team Two▬▬▬▬▬▬▬▬▬\n\n';
+    str += '▬▬▬▬▬▬▬▬▬Team Two▬▬▬▬▬▬▬▬▬\n';
 
     for (var i = 0; i < team2.length; i++) {
         str += ':small_red_triangle_down:' + ' ' + team2[i] + '\n';
