@@ -11,11 +11,19 @@ module.exports = class InhousesCommand extends Command {
             group: 'utility',
             memberName: 'inhouses',
             description: 'Set up custom inhouse lobbies easily!',
+            throttling: {
+                usages: 1,
+                duration: 15
+            },
             examples: [`${config.prefix} inhouses firstArg`],
             args: [{
                 key: 'teamSize',
                     prompt: 'How many people will be on each team?',
                     type: 'integer',
+            },{
+                key: 'seconds',
+                prompt: 'How many seconds until the teams are generated?',
+                type: 'integer',
             }]
         });
     }
@@ -23,9 +31,9 @@ module.exports = class InhousesCommand extends Command {
     async run(msg, args) {
         /* Top is gotten by typing \:emoji_name: 
            Bottom is the snowflake. */
-        let reactionEmojiString = '<:paw:739673498481328129>'
-        let reactionEmoji = '739673498481328129'
-        var numPlayers
+        let reactionEmojiString = '<:paw:739673498481328129>';
+        let reactionEmoji = '739673498481328129';
+        var numPlayers;
         var players = [];
         var team1 = [];
         var team2 = [];
@@ -45,7 +53,7 @@ module.exports = class InhousesCommand extends Command {
         msg.say(embed).then(sentEmbed => {
             sentEmbed.react(reactionEmoji);
             // wait for user reaction
-            sentEmbed.awaitReactions(filter, {time: 1000 * 5})
+            sentEmbed.awaitReactions(filter, {time: 1000 * args.seconds})
             .then(async collected => {
                 // check if there is enough player for inhouse
                 numPlayers = collected.first().users.cache.size - 1;
@@ -81,7 +89,7 @@ module.exports = class InhousesCommand extends Command {
                         .setTimestamp());
                 }
             })
-            .catch(collected => sentEmbed.say("Error, command failed"));
+            .catch(collected => sentEmbed.say("Nobody reacted to the message."));
         });
 
 
@@ -90,21 +98,21 @@ module.exports = class InhousesCommand extends Command {
 
 async function formatPlayer(team1, team2) {
 
-    let str = ''
+    let str = '';
 
-    str += '▬▬▬▬▬▬▬▬▬Blue Team▬▬▬▬▬▬▬▬▬\n\n'
+    str += '▬▬▬▬▬▬▬▬▬Team One▬▬▬▬▬▬▬▬▬\n\n';
 
     for (var i = 0; i < team1.length; i++) {
         str += ':small_blue_diamond:' + ' ' + team1[i] + '\n';
     }
 
-    str += '▬▬▬▬▬▬▬▬▬Red Team▬▬▬▬▬▬▬▬▬\n\n'
+    str += '▬▬▬▬▬▬▬▬▬Team Two▬▬▬▬▬▬▬▬▬\n\n';
 
     for (var i = 0; i < team2.length; i++) {
         str += ':small_red_triangle_down:' + ' ' + team2[i] + '\n';
     }
     
-    str += '**▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**'
+    str += '**▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**';
 
-    return str
+    return str;
 }

@@ -1,7 +1,10 @@
 /* Initial imports, do not remove these. You can add
    more as you wish. */
-const { Command } = require('discord.js-commando');
+const {
+    Command
+} = require('discord.js-commando');
 const config = require('../../config.json')
+var fs = require('fs');
 
 /* This is the templateCommand command.
    You can copy this file into your folder and replace it to make a new
@@ -13,29 +16,26 @@ const config = require('../../config.json')
 module.exports = class TemplateCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'templatecommand',
-            aliases: ['template', 'temp'],
-            group: 'templates',
-            memberName: 'template',
-            description: 'This is a template command. Change the things in this file to make your command.',
-            throttling: { //Throttles the command so you can only use it 1 time every 30 seconds.
-                usages: 1,
-                duration: 30
-            },
-            examples: [`${config.prefix} templateCommand firstArg`],
-            args: [{
-                key: 'firstArg',
-                prompt: 'This is the first argument, you can access it with args.firstArg in the run function.',
-                type: 'string',
-            }]
+            name: 'jerry',
+            aliases: ['jerrymeme','jerrymemes','jdog','jungleman'],
+            group: 'fun',
+            memberName: 'jerry',
+            description: 'Some may call him Jerry, others may call him JRTWCA. But me? I call him Party Mom.',
+            throttling: {
+                usages: 3,
+                duration: 20
+            }
         });
     }
 
     async run(msg, args) {
         // Makes the bot talk, returns whatever firstArg is back.
         //return msg.say(args.firstArg);
-
+        var files = fs.readdirSync('assets/fun/jerry/')
+        let chosenFile = files[Math.floor(Math.random() * files.length)]
         //Hello World!
-        return msg.say("Hello World!");
+        return msg.say("Here's your fresh Jerry Meme.", {
+            files: ['assets/fun/jerry/' + chosenFile]
+        });
     }
 };

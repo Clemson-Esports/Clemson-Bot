@@ -14,7 +14,7 @@ client
     .on('debug', console.log)
     .on('ready', () => {
         console.log(`Client ready; logged in as ${client.user.username}#${client.user.discriminator} (${client.user.id})`);
-        client.user.setActivity('Clemson Football', {
+        client.user.setActivity('Clemson Esports', {
             type: 'WATCHING'
         })
         .then(presence => console.log(`Activity set to ${presence.activities[0].name}`))
@@ -27,7 +27,6 @@ client
         console.warn('Reconnecting...');
     })
     .on('commandError', (cmd, err) => {
-        if (err instanceof commando.FriendlyError) return;
         console.error(`Error in command ${cmd.groupID}:${cmd.memberName}`, err);
     })
     .on('commandBlocked', (msg, reason) => {
