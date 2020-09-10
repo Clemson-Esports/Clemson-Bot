@@ -43,7 +43,7 @@ module.exports = class InhousesCommand extends Command {
         const embed = new Discord.MessageEmbed()
             .setColor('#F56600')
             .setTitle(`🐯 Clemson Esports Inhouses 🐯`)
-            .setDescription(`React to this message with a ${reactionEmojiString} to be put into the random team generation! You have a total of ${args.seconds} seconds to react before teams are generated.`)
+            .setDescription(`React to this message with a ${reactionEmojiString} to be put into the random team generation!\nGenerating [2] teams of ${args.teamSize} players after ${args.seconds} seconds pass.`)
             .setThumbnail('https://www.clemson.edu/brand/resources/logos/paw/orange.png')
             .setTimestamp();
 
