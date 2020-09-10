@@ -18,6 +18,10 @@ module.exports = class TemplateCommand extends Command {
             group: 'templates',
             memberName: 'template',
             description: 'This is a template command. Change the things in this file to make your command.',
+            throttling: { //Throttles the command so you can only use it 1 time every 30 seconds.
+                usages: 1,
+                duration: 30
+            },
             examples: [`${config.prefix} templateCommand firstArg`],
             args: [{
                 key: 'firstArg',
