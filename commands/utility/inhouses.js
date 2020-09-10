@@ -11,6 +11,10 @@ module.exports = class InhousesCommand extends Command {
             group: 'utility',
             memberName: 'inhouses',
             description: 'Set up custom inhouse lobbies easily!',
+            throttling: {
+                usages: 1,
+                duration: 15
+            },
             examples: [`${config.prefix} inhouses firstArg`],
             args: [{
                 key: 'teamSize',
@@ -94,21 +98,21 @@ module.exports = class InhousesCommand extends Command {
 
 async function formatPlayer(team1, team2) {
 
-    let str = ''
+    let str = '';
 
-    str += '▬▬▬▬▬▬▬▬▬Team One▬▬▬▬▬▬▬▬▬\n\n'
+    str += '▬▬▬▬▬▬▬▬▬Team One▬▬▬▬▬▬▬▬▬\n\n';
 
     for (var i = 0; i < team1.length; i++) {
         str += ':small_blue_diamond:' + ' ' + team1[i] + '\n';
     }
 
-    str += '▬▬▬▬▬▬▬▬▬Team Two▬▬▬▬▬▬▬▬▬\n\n'
+    str += '▬▬▬▬▬▬▬▬▬Team Two▬▬▬▬▬▬▬▬▬\n\n';
 
     for (var i = 0; i < team2.length; i++) {
         str += ':small_red_triangle_down:' + ' ' + team2[i] + '\n';
     }
     
-    str += '**▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**'
+    str += '**▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**';
 
-    return str
+    return str;
 }
