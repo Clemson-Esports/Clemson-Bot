@@ -56,7 +56,7 @@ module.exports = class InhousesCommand extends Command {
             sentEmbed.awaitReactions(filter, {time: 1000 * args.seconds})
             .then(async collected => {
                 // check if there is enough player for inhouse
-                numPlayers = collected.first().users.cache.size - 1;
+                numPlayers = collected.first().count - 1;
                 if (numPlayers < args.teamSize * 2) {
                     sentEmbed.say(`Not enough players, only ${numPlayers} user(s) signed up`)
                 }
@@ -89,7 +89,9 @@ module.exports = class InhousesCommand extends Command {
                         .setTimestamp());
                 }
             })
-            .catch(collected => sentEmbed.say("Nobody reacted to the message."));
+            .catch(collected => {
+                console.log(collected);
+                sentEmbed.say("Nobody reacted to the message.")});
         });
 
 
