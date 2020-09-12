@@ -11,6 +11,7 @@ module.exports = class EditCommand extends Command {
             group: 'utility',
             memberName: 'editmessage',
             description: 'Edit a message the bot has sent previously.',
+            userPermissions: ['ADMINISTRATOR'],
             examples: [`${config.prefix} editmessage copyToChannel msgToEdit srcChannel msgToCopy`],
             args: [{
                 key: 'channelToSet',
