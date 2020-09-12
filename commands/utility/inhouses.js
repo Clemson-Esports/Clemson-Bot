@@ -15,7 +15,7 @@ module.exports = class InhousesCommand extends Command {
                 usages: 1,
                 duration: 15
             },
-            examples: [`${config.prefix} inhouses firstArg`],
+            examples: [`${config.prefix} inhouses 5 25 - Makes 2 teams of 5 after 25 seconds.`],
             args: [{
                 key: 'teamSize',
                     prompt: 'How many people will be on each team?',
