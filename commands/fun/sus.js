@@ -58,7 +58,7 @@ module.exports = class TemplateCommand extends Command {
         var files = fs.readdirSync('assets/fun/sus/')
         let chosenFile = files[Math.floor(Math.random() * files.length)]
         let susPercentage = Math.floor(Math.random() * (100 - 0 + 1) + 0);
-        let chooseQuote = Math.floor(Math.random() * (quotes.length - 0 + 1) + 0);
+        let chooseQuote = Math.floor(Math.random() * (quotes.length - 1 + 1) + 0);
         return msg.say(`${susPercentage}% Sus: ${quotes[chooseQuote]}`, {
             files: ['assets/fun/sus/' + chosenFile]
         });
