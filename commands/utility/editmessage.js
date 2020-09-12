@@ -13,19 +13,19 @@ module.exports = class EditCommand extends Command {
             description: 'Edit a message the bot has sent previously.',
             examples: [`${config.prefix} editmessage copyToChannel msgToEdit srcChannel msgToCopy`],
             args: [{
-                key: 'copyToChannel',
+                key: 'channelToSet',
                 prompt: 'Copy the ID from the channel where the message you are **EDITING** is.',
                 type: 'string',
             },{
-                key: 'msgToEdit',
+                key: 'msgToSet',
                 prompt: 'Copy the ID of the message you would like to **EDIT**.',
                 type: 'string',
             },{
-                key: 'srcChannel',
+                key: 'channelToGet',
                 prompt: 'Copy the ID from the channel where the message you are **COPYING** is.',
                 type: 'string',
             },{
-                key: 'msgToCopy',
+                key: 'msgToGet',
                 prompt: 'Copy the ID of the message you would like to **COPY**.',
                 type: 'string',
             }]
@@ -33,7 +33,14 @@ module.exports = class EditCommand extends Command {
     }
 
     async run(msg, args) {
-
+        let copy;
+        let paste;
+        msg.client.channels.cache.get(args.channelToSet).messages.fetch(args.msgToSet)
+            .then(message => {
+                copy = message;
+                paste = msg.client.channels.cache.get(args.channelToGet).messages.fetch(args.msgToGet)
+                .then(source => copy.edit(source))
+                .catch(console.log);
+            }).catch(console.log);
     }
 };
-
