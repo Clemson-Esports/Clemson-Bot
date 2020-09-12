@@ -34,12 +34,11 @@ module.exports = class EditCommand extends Command {
 
     async run(msg, args) {
         let copy;
-        let paste;
         msg.client.channels.cache.get(args.channelToSet).messages.fetch(args.msgToSet)
             .then(message => {
                 copy = message;
-                paste = msg.client.channels.cache.get(args.channelToGet).messages.fetch(args.msgToGet)
-                .then(source => copy.edit(source))
+                msg.client.channels.cache.get(args.channelToGet).messages.fetch(args.msgToGet)
+                .then(source => copy.edit(source.content))
                 .catch(console.log);
             }).catch(console.log);
     }
