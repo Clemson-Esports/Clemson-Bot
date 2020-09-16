@@ -54,6 +54,65 @@ client
 			${enabled ? 'enabled' : 'disabled'}
 			${guild ? `in guild ${guild.name} (${guild.id})` : 'globally'}.
 		`);
+    })
+    .on("presenceUpdate", function(oldPresence, newPresence){
+        // 755555057134731415 754574527341658172
+        streaming_role = newPresence.guild.roles.cache.find(role => role.name === 'CURRENTLY STREAMING')
+        // check if server has the role
+        if (streaming_role) {
+            // make sure user status/activities is not empty array
+            if (newPresence.activities.length !== 0) {
+                // check for streaming status
+                if (newPresence.activities[0].name === 'Twitch' && newPresence.activities[0].type === 'STREAMING') {
+                    newPresence.guild.members.fetch(newPresence.userID)
+                    .then(user => {
+                        user.roles.add(streaming_role)
+                        .catch(err => {
+                            if (err.code === 'INVALID_TYPE') {
+                                console.log(`${user.displayName} already has streaming role`)
+                            }
+                            else {
+                                console.log(err)
+                            }
+                        });
+                    })
+                }
+                // when user turn off stream but keep game on
+                else if (newPresence.activities[0].name !== 'Twitch' && newPresence.activities[0].type !== 'STREAMING') {
+                    newPresence.guild.members.fetch(newPresence.userID)
+                    .then(user => {
+                        if (user.roles.cache.has(streaming_role.id)) {
+                            user.roles.remove(streaming_role)
+                            .catch(err => {
+                                if (err.code === 'INVALID_TYPE') {
+                                    console.log(`${user.displayName}'s role already removed`)
+                                }
+                                else {
+                                    console.log(err)
+                                }
+                            });
+                        }
+                    })
+                }
+            }
+            else {
+                // when user turn off stream and game
+                newPresence.guild.members.fetch(newPresence.userID)
+                .then(user => {
+                    if (user.roles.cache.has(streaming_role.id)) {
+                        user.roles.remove(streaming_role)
+                        .catch(err => {
+                            if (err.code === 'INVALID_TYPE') {
+                                console.log(`${user.displayName}'s role already removed`)
+                            }
+                            else {
+                                console.log(err)
+                            }
+                        });
+                    }
+                })
+            }
+        }
     });
 
 // To add a new command group just add a new entry in the registerGroups call
