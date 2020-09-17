@@ -32,7 +32,7 @@ module.exports = class CopyCommand extends Command {
     async run(msg, args) {
         msg.client.channels.fetch(args.source)
             .then(srcChannel => srcChannel.messages.fetch(args.msgID))
-            .then(message => msg.client.channels.cache.get(args.dest).send(message))
+            .then(message => msg.client.channels.cache.get(args.dest).send(message.content))
             .catch(console.error);
     }
 };
