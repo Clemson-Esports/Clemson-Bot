@@ -14,8 +14,8 @@ client
     .on('debug', console.log)
     .on('ready', () => {
         console.log(`Client ready; logged in as ${client.user.username}#${client.user.discriminator} (${client.user.id})`);
-        client.user.setActivity('Clemson Esports', {
-            type: 'WATCHING'
+        client.user.setActivity(`[${config.prefix} help]`, {
+            type: 'PLAYING'
         })
         .then(presence => console.log(`Activity set to ${presence.activities[0].name}`))
         .catch(console.error);
