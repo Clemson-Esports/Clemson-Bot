@@ -58,15 +58,17 @@ client
     .on("presenceUpdate", function(oldPresence, newPresence){
         // 755555057134731415 754574527341658172
         streaming_role = newPresence.guild.roles.cache.find(role => role.name === 'CURRENTLY STREAMING')
+        clemson_role = newPresence.guild.roles.cache.find(role => role.name === 'Clemson')
         // check if server has the role
-        if (streaming_role) {
+        if (streaming_role && clemson_role) {
             // make sure user status/activities is not empty array
             if (newPresence.activities.length !== 0) {
                 // check for streaming status
                 if (newPresence.activities[0].name === 'Twitch' && newPresence.activities[0].type === 'STREAMING') {
                     newPresence.guild.members.fetch(newPresence.userID)
                     .then(user => {
-                        user.roles.add(streaming_role)
+                        //if(user.roles.cache.has(clemson_role))
+                            user.roles.add(streaming_role)
                         .catch(err => {
                             if (err.code === 'INVALID_TYPE') {
                                 console.log(`${user.displayName} already has streaming role`)
