@@ -33,10 +33,11 @@ module.exports = class InhousesCommand extends Command {
            Bottom is the snowflake. */
         let reactionEmojiString = '<:paw:739673498481328129>';
         let reactionEmoji = '739673498481328129';
-        var numPlayers;
-        var players = [];
-        var team1 = [];
-        var team2 = [];
+        let numPlayers;
+        let players = [];
+        let playerids = [];
+        let team1 = [];
+        let team2 = [];
 
 
         /* Embed message */
@@ -56,37 +57,46 @@ module.exports = class InhousesCommand extends Command {
             sentEmbed.awaitReactions(filter, {time: 1000 * args.seconds})
             .then(async collected => {
                 // check if there is enough player for inhouse
-                numPlayers = collected.first().count - 1;
-                if (numPlayers < args.teamSize * 2) {
-                    sentEmbed.say(`Not enough players, only ${numPlayers} user(s) signed up`)
+                if (collected) {
+                    numPlayers = collected.first().count - 1;
+                    if (numPlayers < args.teamSize * 2) {
+                        sentEmbed.say(`Not enough players, only ${numPlayers} user(s) signed up`)
+                    }
+                    else {
+                        collected.first().users.cache.each(user => {
+                            // make sure user is not bot
+                            if (!user.bot) {
+                                playerids.push(user.id);
+                            }
+                        })
+                        // add player nickname
+                        playerids.forEach(id => {
+                            players.push(collected.first().message.guild.members.cache.find(member => member.id === id).nickname);
+                        })
+                        // assign players to teams
+                        let temp;
+                        for (let i=0; i < 2; i++) {
+                            for (let j =0; j < args.teamSize; j++) {
+                                temp = Math.floor(Math.random() * players.length);
+                                if (i === 0) {
+                                    team1[j] = players[temp];
+                                    players.splice(temp, 1);
+                                }
+                                else {
+                                    team2[j] = players[temp];
+                                    players.splice(temp, 1);
+                                }
+                            }
+                        }
+                        // send team embed
+                        let description = await formatPlayer(team1, team2);
+                        sentEmbed.say(embed
+                            .setDescription(description)
+                            .setTimestamp());
+                    }
                 }
                 else {
-                    collected.first().users.cache.each(user => {
-                        // make sure user is not bot
-                        if (!user.bot) {
-                            players.push(user.username);
-                        }
-                    })
-                    // assign players to teams
-                    var temp;
-                    for (var i=0; i < 2; i++) {
-                        for (var j =0; j < args.teamSize; j++) {
-                            temp = Math.floor(Math.random() * players.length);
-                            if (i === 0) {
-                                team1[j] = players[temp];
-                                players.splice(temp, 1);
-                            }
-                            else {
-                                team2[j] = players[temp];
-                                players.splice(temp, 1);
-                            }
-                        }
-                    }
-                    // send team embed
-                    var description = await formatPlayer(team1, team2);
-                    sentEmbed.say(embed
-                        .setDescription(description)
-                        .setTimestamp());
+                    sentEmbed.say("Error: Collection was empty.")
                 }
             })
             .catch(collected => {
@@ -104,13 +114,13 @@ async function formatPlayer(team1, team2) {
 
     str += '▬▬▬▬▬▬▬▬▬Team One▬▬▬▬▬▬▬▬▬\n';
 
-    for (var i = 0; i < team1.length; i++) {
+    for (let i = 0; i < team1.length; i++) {
         str += ':small_blue_diamond:' + ' ' + team1[i] + '\n';
     }
 
     str += '▬▬▬▬▬▬▬▬▬Team Two▬▬▬▬▬▬▬▬▬\n';
 
-    for (var i = 0; i < team2.length; i++) {
+    for (let i = 0; i < team2.length; i++) {
         str += ':small_red_triangle_down:' + ' ' + team2[i] + '\n';
     }
     

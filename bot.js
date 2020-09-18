@@ -67,16 +67,18 @@ client
                 if (newPresence.activities[0].name === 'Twitch' && newPresence.activities[0].type === 'STREAMING') {
                     newPresence.guild.members.fetch(newPresence.userID)
                     .then(user => {
-                        //if(user.roles.cache.has(clemson_role))
+                        // make sure user has clemson role
+                        if (user.roles.cache.has(clemson_role.id)) {
                             user.roles.add(streaming_role)
-                        .catch(err => {
-                            if (err.code === 'INVALID_TYPE') {
-                                console.log(`${user.displayName} already has streaming role`)
-                            }
-                            else {
-                                console.log(err)
-                            }
-                        });
+                            .catch(err => {
+                                if (err.code === 'INVALID_TYPE') {
+                                    console.log(`${user.displayName} already has streaming role`)
+                                }
+                                else {
+                                    console.log(err)
+                                }
+                            });
+                        }
                     })
                 }
                 // when user turn off stream but keep game on
