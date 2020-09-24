@@ -49,7 +49,7 @@ module.exports = class InhousesCommand extends Command {
             .setTimestamp();
 
         const filter = (reaction, user) => reaction.emoji.id === reactionEmoji && user.id === msg.author.id;
-
+        msg.delete();
         /* Send the message and start the reaction to it! */
         msg.say(embed).then(sentEmbed => {
             sentEmbed.react(reactionEmoji);
