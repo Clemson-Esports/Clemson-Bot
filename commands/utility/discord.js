@@ -19,6 +19,7 @@ module.exports = class DiscordCommand extends Command {
     }
 
     async run(msg, args) {
+        msg.delete();
         let discordLink = "https://discord.gg/clemson"
         let serverName = "Clemson Esports"
         return msg.say(`:star: Click here to join the ${serverName} community! ${discordLink} :star:`);

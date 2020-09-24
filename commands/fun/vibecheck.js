@@ -23,12 +23,13 @@ module.exports = class VibeCheckCommand extends Command {
     async run(msg, args) {
         let tUp = '👍'
         let tDown = '👎'
+        msg.delete();
         const embed = new Discord.MessageEmbed()
             .setColor('#F56600')
             .setTitle(`Vibe Check`)
             .setDescription(`Are you vibin' right now? Rate your vibes with a :thumbsup: or :thumbsdown:.\n
                             We're all lookin' out for each other here. :sunglasses:`)
-            .setThumbnail('https://www.clemson.edu/brand/resources/logos/paw/orange.png')
+            .setThumbnail(msg.author.displayAvatarURL())
             .setTimestamp();
 
         msg.say(embed).then(sentEmbed => {
