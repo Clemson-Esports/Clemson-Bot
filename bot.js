@@ -127,6 +127,7 @@ client.registry
         ['esports', 'Esports related commands'],
         ['fun', 'Some random stuff, just for fun!'],
         ['lol', 'League of Legends'],
+        ['mc', 'Minecraft'],
         ['misc', 'Miscellaneous commands'],
         ['templates', 'For testing/dev team'],
     ])
