@@ -40,6 +40,7 @@ module.exports = class ServerCommand extends Command {
                 .setColor('#F56600')
                 .setTitle(`🐯 Clemson Esports MC Server 🐯`)
                 .setDescription(description)
+                .setThumbnail('https://api.mcsrvstat.us/icon/' + config.serverIP)
                 .setTimestamp();
 
             msg.say(embed)
