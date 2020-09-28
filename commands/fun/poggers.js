@@ -19,6 +19,7 @@ module.exports = class NoCottageCheeseCommand extends Command {
     }
 
     async run(msg) {
+        msg.delete();
         return msg.say({
             files: ['assets/fun/poggers.png']
         });
