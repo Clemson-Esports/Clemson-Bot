@@ -13,8 +13,9 @@ This is a quick guide on how to develop and contribute to this project!
 Make sure that you have [node](https://nodejs.org/en/download/) installed. 
 You can check to make sure it's installed by running either of the following commands via command line...
 
-* `npm` - Node Package Manager, included with Node.js
-* `node` - from Node.js
+* `npm --version` - Node Package Manager, included with Node.js
+* `node --version` - from Node.js 
+  * We are writing this on `Node v12.13.0` or higher, any versions lower than this may cause errors.
 
 If these commands don't give you an error, then you can continue to the next step.
 
