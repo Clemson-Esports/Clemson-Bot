@@ -3,7 +3,7 @@ const {
 } = require('discord.js-commando');
 const config = require('../../config.json')
 
-module.exports = class NoCottageCheeseCommand extends Command {
+module.exports = class PoggersCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'poggers',
