@@ -40,8 +40,8 @@ module.exports = class PollCommand extends Command {
                     prompt: 'How long should the poll last in minutes? Enter 0 if the poll should not end after a specified time.',
                     type: 'integer',
                     validate: mins => {
-                        if (mins >= 0 && mins <= 1440) return true;
-                        return 'Polling time must be between 0 and 1440 (24 hours).';
+                        if (mins >= 0 && mins <= 7200) return true;
+                        return 'Polling time must be between 0 and 7200 minutes (5 days maximum).';
                     }
                 }]
         });
