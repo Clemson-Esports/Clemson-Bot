@@ -1,5 +1,7 @@
 # Clemson-Bot
-The Discord bot for the Clemson Esports Discord. The goal is to have commands for different games as well as Clemson related commands. For more information for contributing, contact `Zerukai#4327` on Discord!
+The Discord bot for the Clemson Esports Discord. The goal is to have commands for different games as well as Clemson related commands. For more information for contributing, contact `Zerukai#4327` on Discord or keep on reading below!
+
+If you end up deciding you want to contribute, after your first approved Pull Request, you'll get a special `@Bot Developer` role in the Clemson Esports server!
 <hr>
 
 Contributing and Development
@@ -28,11 +30,11 @@ If these commands don't give you an error, then you can continue to the next ste
 * Make note of the token on this page
 
 
-## 3. Join the Test Server
+## 3. Create a Test Server
 
-* Click the link for the an invite to the [Test Server](https://discord.gg/3GkAQEC)
-* Message `Zerukai#4327` for a Developer role
-* Create a text channel with your name where you can test your commands in the `Test Bots` category
+* In Discord, on the left sidebar, click the plus icon and create a new Discord Server.
+* Name it something memorable, like "Bot Testing Server".
+  * This is YOUR own private server to test the bot on. You have full power over your own bot here, so do as you please.
 
 
 ## 4. Prepare Bot for Connecting to the Test Server
@@ -40,8 +42,9 @@ If these commands don't give you an error, then you can continue to the next ste
 * Click `OAuth2` in the left sidebar
 * In the `SCOPES` section, check `bot`
 * In the `BOT PERMISSIONS` section, check `Administrator`
+  * Typically you only want to give your bot the least permissions it needs to operate, but since this is only a test server you are inviting it to, Administrator is fine. Do NOT add the bot to any public servers with Administrator permissions unless you know what you are doing.
 * Copy the link from the `SCOPES` section and open in a new tab/window
-* Select the test server to add the bot to (or send the link to `Zerukai#4327` if you don't have permissions)
+* Select the test server that you made in step 3, and add your bot
 * Check to see if your bot is in the serverlist
 <center><img src="https://i.imgur.com/fUKmCG2.png" width="60%"></center>
 
@@ -52,8 +55,7 @@ If these commands don't give you an error, then you can continue to the next ste
 * Rename `config.json.template` to `config.json` and fill out the values inside
   * `token` is what you created in part 2
   * `prefix` is the prefix for each of your commands. 
-    * By convention we have our first and last initial followed by an exclamation point.
-    * Ex: `mh!` ➡ `mh! <command>`
+    * Ex: `cu!` ➡ `cu! <command>`
   * `owner` is your Discord ID. Find it [here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-).
 
 
@@ -71,7 +73,7 @@ when you are in the root directory `\Clemson-Bot`
 
 ## 7. Developing and Testing your first Command
 
-Navigate to the `Clemson-Bot/commands/templates/` folder and find the `templateCommand.js` file.
+Navigate to the `Clemson-Bot/commands/templates/` directory and find the `templateCommand.js` file.
 This file gives you a template of how you can create a command, simply edit and add to it to create your own command.
 You can find examples of other commands already written in the `Clemson-Bot/commands/*` folders.
 
