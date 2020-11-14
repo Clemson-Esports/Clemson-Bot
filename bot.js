@@ -56,7 +56,7 @@ client
 		`);
     })
     .on("presenceUpdate", function(oldPresence, newPresence){
-        streamerRoles();
+        streamerRoles(oldPresence, newPresence);
     });
 
 // To add a new command group just add a new entry in the registerGroups call
@@ -76,7 +76,7 @@ client.registry
 
 client.login(config.token);
 
-function streamerRoles() { 
+function streamerRoles(oldPresence, newPresence) { 
     streaming_role = newPresence.guild.roles.cache.find(role => role.name === 'CURRENTLY STREAMING')
     clemson_role = newPresence.guild.roles.cache.find(role => role.name === 'Clemson')
     // check if server has the role
