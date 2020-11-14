@@ -59,6 +59,9 @@ module.exports = class InhousesCommand extends Command {
                 // check if there is enough player for inhouse
                 if (collected) {
                     numPlayers = collected.first().count - 1;
+                    console.log(collected);
+                    console.log("--=============================")
+                    console.log(collected.first());
                     if (numPlayers < args.teamSize * 2) {
                         sentEmbed.say(`Not enough players, only ${numPlayers} user(s) signed up`)
                     }
